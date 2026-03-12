@@ -21,12 +21,12 @@
 
 <div align="justify">
   
-# Introdução
+# 📌 Introdução
 Este projeto apresenta a modelagem, simulação e controle de concorrência de um sistema de manufatura automatizado utilizando Redes de Petri Coloridas Hierárquicas (HCPN). O objetivo principal é garantir o roteamento correto de peças, evitar gargalos (overflow de buffers) e assegurar a exclusão mútua no compartilhamento de recursos físicos (robôs manipuladores) operando em um ambiente de produção paralela.
 
 ---
 
-# Descrição do Problema
+# 📝 Descrição do Problema
 
 O sistema consiste em uma planta de manufatura composta por 3 células de produção independentes operando em paralelo. A arquitetura física de cada célula dita que:
 
@@ -42,7 +42,7 @@ O sistema consiste em uma planta de manufatura composta por 3 células de produ�
 
 ---
 
-# Arquitetura e Diagrama de Blocos
+# 🏗️ Arquitetura e Diagrama de Blocos
 
 O modelo foi construído com uma abordagem Top-Down usando sub-páginas e soquetes de porta (Port-Sockets), isolando a lógica de controle da célula da arquitetura de roteamento da fábrica.
 
@@ -67,7 +67,7 @@ O modelo foi construído com uma abordagem Top-Down usando sub-páginas e soquet
 
 ---
 
-# Descritivo Detalhado do Desenvolvimento
+# 🛠️ Descritivo Detalhado do Desenvolvimento
 
 A modelagem do sistema no CPN Tools foi dividida em quatro grandes fases, evoluindo de uma lógica sequencial simples para uma arquitetura hierárquica e paralela de manufatura.
   * Fase 1: Modelagem da Lógica Interna e Controle de Concorrência: O primeiro passo foi garantir o funcionamento perfeito de uma única célula de produção contendo duas máquinas operando simultaneamente.
@@ -87,7 +87,7 @@ A modelagem do sistema no CPN Tools foi dividida em quatro grandes fases, evolui
     * Correção de Abastecimento: Inseriu-se o valor 2'IDLE no lugar Esteira_Vagas da página principal. Isso inicializou o sistema com 2 vagas disponíveis no buffer compartilhado, impedindo um travamento imediato (Deadlock) do robô na tentativa de depositar a primeira peça processada.
 
 --- 
-# Imagens do Esquema
+# 🖼️ Imagens do Esquema
 
 ![Célula](assets/celula.png)
 
@@ -97,6 +97,6 @@ A modelagem do sistema no CPN Tools foi dividida em quatro grandes fases, evolui
 
 ---
 
-# Link do video
+# 🎥 Link do video
 
 <div/>
