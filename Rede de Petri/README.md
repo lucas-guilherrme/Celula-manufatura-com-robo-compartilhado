@@ -14,6 +14,7 @@
 - [Descrição do Problema](#-Descrição-do-Problema)
 - [Arquitetura e Diagrama de Blocos](#-Arquitetura-e-Diagrama-de-Blocos)
 - [Descritivo Detalhado do Desenvolvimento](#-Descritivo-Detalhado-do-Desenvolvimento)
+- [Link do video](#-Link-do-video)
 
 ---
 
@@ -21,6 +22,8 @@
   
 # Introdução
 Este projeto apresenta a modelagem, simulação e controle de concorrência de um sistema de manufatura automatizado utilizando Redes de Petri Coloridas Hierárquicas (HCPN). O objetivo principal é garantir o roteamento correto de peças, evitar gargalos (overflow de buffers) e assegurar a exclusão mútua no compartilhamento de recursos físicos (robôs manipuladores) operando em um ambiente de produção paralela.
+
+---
 
 # Descrição do Problema
 
@@ -35,6 +38,8 @@ O sistema consiste em uma planta de manufatura composta por 3 células de produ�
   1. Exclusão Mútua: $M_{x}$ e $M_{y}$ não podem requisitar o robô simultaneamente.
   2. Prevenção de Deadlock: O sistema deve garantir que o ciclo de produção continue fluindo assim que os recursos forem liberados.
   3. Controle de Overflow: O robô deve ser bloqueado e impedido de depositar novas peças caso a esteira atinja sua capacidade máxima (2 peças).
+
+---
 
 # Arquitetura e Diagrama de Blocos
 
@@ -59,6 +64,8 @@ O modelo foi construído com uma abordagem Top-Down usando sub-páginas e soquet
 
 ![Sistema de Manufatura](assets/sistema-de-manufatura.png)
 
+---
+
 # Descritivo Detalhado do Desenvolvimento
 
 A modelagem do sistema no CPN Tools foi dividida em quatro grandes fases, evoluindo de uma lógica sequencial simples para uma arquitetura hierárquica e paralela de manufatura.
@@ -77,5 +84,9 @@ A modelagem do sistema no CPN Tools foi dividida em quatro grandes fases, evolui
   * Fase 4: Sincronização e Prevenção de Deadlock: A etapa final garantiu que a simulação de eventos discretos iniciasse corretamente, refletindo a realidade da fábrica.
     * Ajuste da Marcação Inicial: Ao transformar a Esteira_Vagas em um soquete na camada superior, o estado inicial do sistema passou a ser governado pela página Fabrica.
     * Correção de Abastecimento: Inseriu-se o valor 2'IDLE no lugar Esteira_Vagas da página principal. Isso inicializou o sistema com 2 vagas disponíveis no buffer compartilhado, impedindo um travamento imediato (Deadlock) do robô na tentativa de depositar a primeira peça processada.
+
+--- 
+
+# Link do video
 
 <div/>
