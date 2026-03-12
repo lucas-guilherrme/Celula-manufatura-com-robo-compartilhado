@@ -1,0 +1,2907 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Module xmlns="http://waters.sourceforge.net/xsd/module" xmlns:B="http://waters.sourceforge.net/xsd/base" Name="projeto_teste_03">
+<EventDeclList>
+<EventDecl Kind="CONTROLLABLE" Name="start_M1"/>
+<EventDecl Kind="CONTROLLABLE" Name="start_M2"/>
+<EventDecl Kind="CONTROLLABLE" Name="pick_M1"/>
+<EventDecl Kind="CONTROLLABLE" Name="pick_M2"/>
+<EventDecl Kind="CONTROLLABLE" Name="deposit"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="finish_M1"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="finish_M2"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="remove"/>
+<EventDecl Kind="PROPOSITION" Name=":accepting"/>
+</EventDeclList>
+<ComponentList>
+<SimpleComponent Kind="PLANT" Name="M1">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="Idle">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="57" Y="58"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-22" Y="-1"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Processing">
+<PointGeometry>
+<Point X="143" Y="83"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-6" Y="-29"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Done">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="80" Y="145"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-13" Y="7"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="Idle" Target="Processing">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="102" Y="62"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Processing" Target="Done">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="117" Y="119"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Done" Target="Idle">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="61" Y="103"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="M2">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="Idle">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="57" Y="58"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-22" Y="-1"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-23" Y="9"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Processing">
+<PointGeometry>
+<Point X="143" Y="82"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-3" Y="-21"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Done">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="81" Y="144"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-13" Y="7"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="Idle" Target="Processing">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="102" Y="62"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Processing" Target="Done">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="118" Y="119"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Done" Target="Idle">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="61" Y="103"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="ROBO">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="57" Y="57"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-22" Y="-2"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-22" Y="9"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="carrying">
+<PointGeometry>
+<Point X="224" Y="112"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-19" Y="6"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="free" Target="carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="146" Y="63"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="carrying" Target="free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="133" Y="105"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="BUFFER">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="B0">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="59" Y="59"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-22" Y="0"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-13" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="140" Y="129"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-17" Y="7"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="240" Y="64"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="B0" Target="B1">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="103" Y="82"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1" Target="B2">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="188" Y="83"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2" Target="B1">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="201" Y="104"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1" Target="B0">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="89" Y="99"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SUPERVISOR" Name="sup(BUFFER||M1||ROBO)">
+<Graph>
+<NodeList>
+<SimpleNode Name="B0.Done.carrying">
+<PointGeometry>
+<Point X="363" Y="170"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Done.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="281" Y="90"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Idle.carrying">
+<PointGeometry>
+<Point X="129" Y="138"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Initial="true" Name="B0.Idle.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="62" Y="73"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Processing.carrying">
+<PointGeometry>
+<Point X="235" Y="153"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Processing.free">
+<PointGeometry>
+<Point X="187" Y="64"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Done.carrying">
+<PointGeometry>
+<Point X="379" Y="329"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Done.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="310" Y="246"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Idle.carrying">
+<PointGeometry>
+<Point X="143" Y="299"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Idle.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="74" Y="215"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Processing.carrying">
+<PointGeometry>
+<Point X="248" Y="322"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Processing.free">
+<PointGeometry>
+<Point X="204" Y="223"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Done.carrying">
+<PointGeometry>
+<Point X="391" Y="471"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Done.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="323" Y="407"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Idle.carrying">
+<PointGeometry>
+<Point X="171" Y="455"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Idle.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="90" Y="375"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Processing.carrying">
+<PointGeometry>
+<Point X="266" Y="481"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Processing.free">
+<PointGeometry>
+<Point X="217" Y="392"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="B0.Done.carrying" Target="B1.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="349" Y="204"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Done.free" Target="B0.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="336" Y="116"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Done.free" Target="B0.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="206" Y="99"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.carrying" Target="B0.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="179" Y="135"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.carrying" Target="B1.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="87" Y="170"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.free" Target="B0.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B0.Idle.free" Target="B0.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="117" Y="50"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.carrying" Target="B0.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="309" Y="151"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.carrying" Target="B1.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="219" Y="182"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.free" Target="B0.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="238" Y="57"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.free" Target="B0.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="213" Y="95"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.carrying" Target="B0.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="392" Y="246"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.carrying" Target="B2.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="365" Y="375"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.free" Target="B0.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="308" Y="157"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.free" Target="B1.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="359" Y="284"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.free" Target="B1.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B1.Idle.carrying" Target="B0.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="124" Y="215"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.carrying" Target="B1.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="192" Y="314"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.carrying" Target="B2.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="103" Y="340"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.free" Target="B0.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="50" Y="138"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.free" Target="B1.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="94" Y="260"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.free" Target="B1.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="130" Y="217"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.carrying" Target="B0.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="248" Y="233"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.carrying" Target="B1.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="322" Y="328"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.carrying" Target="B2.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="233" Y="362"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.free" Target="B0.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="190" Y="133"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.free" Target="B1.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="261" Y="231"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.free" Target="B1.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B2.Done.carrying" Target="B1.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="403" Y="407"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Done.free" Target="B1.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="328" Y="330"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Done.free" Target="B2.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B2.Done.free" Target="B2.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="247" Y="446"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.carrying" Target="B1.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="144" Y="388"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.carrying" Target="B2.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="214" Y="487"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.free" Target="B1.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="61" Y="299"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.free" Target="B2.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="116" Y="429"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.free" Target="B2.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="144" Y="394"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.carrying" Target="B1.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="263" Y="412"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.carrying" Target="B2.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="336" Y="494"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.free" Target="B1.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="204" Y="311"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.free" Target="B2.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="273" Y="409"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.free" Target="B2.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="240" Y="450"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SUPERVISOR" Name="sup(BUFFER||M1||M2||ROBO)">
+<Graph>
+<NodeList>
+<SimpleNode Name="B0.Done.Done.carrying">
+<PointGeometry>
+<Point X="864" Y="-192"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Done.Done.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="706" Y="-436"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Done.Idle.carrying">
+<PointGeometry>
+<Point X="747" Y="-370"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Done.Idle.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="549" Y="-581"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Done.Processing.carrying">
+<PointGeometry>
+<Point X="815" Y="-273"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Done.Processing.free">
+<PointGeometry>
+<Point X="624" Y="-518"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Idle.Done.carrying">
+<PointGeometry>
+<Point X="641" Y="-342"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Idle.Done.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="436" Y="-531"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Idle.Idle.carrying">
+<PointGeometry>
+<Point X="488" Y="-490"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Initial="true" Name="B0.Idle.Idle.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="319" Y="-643"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Idle.Processing.carrying">
+<PointGeometry>
+<Point X="562" Y="-417"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Idle.Processing.free">
+<PointGeometry>
+<Point X="370" Y="-590"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Processing.Done.carrying">
+<PointGeometry>
+<Point X="755" Y="-257"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Processing.Done.free">
+<PointGeometry>
+<Point X="581" Y="-501"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Processing.Idle.carrying">
+<PointGeometry>
+<Point X="619" Y="-429"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Processing.Idle.free">
+<PointGeometry>
+<Point X="440" Y="-631"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Processing.Processing.carrying">
+<PointGeometry>
+<Point X="695" Y="-335"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B0.Processing.Processing.free">
+<PointGeometry>
+<Point X="500" Y="-576"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Done.Done.carrying">
+<PointGeometry>
+<Point X="858" Y="-21"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Done.Done.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="729" Y="-217"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Done.Idle.carrying">
+<PointGeometry>
+<Point X="743" Y="-163"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Done.Idle.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="588" Y="-379"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Done.Processing.carrying">
+<PointGeometry>
+<Point X="807" Y="-87"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Done.Processing.free">
+<PointGeometry>
+<Point X="661" Y="-298"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Idle.Done.carrying">
+<PointGeometry>
+<Point X="631" Y="-129"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Idle.Done.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="473" Y="-342"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Idle.Idle.carrying">
+<PointGeometry>
+<Point X="488" Y="-289"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Idle.Idle.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="356" Y="-484"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Idle.Processing.carrying">
+<PointGeometry>
+<Point X="556" Y="-208"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Idle.Processing.free">
+<PointGeometry>
+<Point X="408" Y="-418"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Processing.Done.carrying">
+<PointGeometry>
+<Point X="742" Y="-61"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Processing.Done.free">
+<PointGeometry>
+<Point X="608" Y="-287"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Processing.Idle.carrying">
+<PointGeometry>
+<Point X="609" Y="-218"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Processing.Idle.free">
+<PointGeometry>
+<Point X="474" Y="-444"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Processing.Processing.carrying">
+<PointGeometry>
+<Point X="680" Y="-132"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B1.Processing.Processing.free">
+<PointGeometry>
+<Point X="536" Y="-372"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Done.Done.carrying">
+<PointGeometry>
+<Point X="887" Y="133"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Done.Done.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="727" Y="-15"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Done.Idle.carrying">
+<PointGeometry>
+<Point X="778" Y="26"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Done.Idle.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="574" Y="-164"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Done.Processing.carrying">
+<PointGeometry>
+<Point X="842" Y="84"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Done.Processing.free">
+<PointGeometry>
+<Point X="653" Y="-87"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Idle.Done.carrying">
+<PointGeometry>
+<Point X="666" Y="75"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Idle.Done.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="470" Y="-135"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Idle.Idle.carrying">
+<PointGeometry>
+<Point X="510" Y="-69"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Idle.Idle.free">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="352" Y="-312"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Idle.Processing.carrying">
+<PointGeometry>
+<Point X="591" Y="13"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Idle.Processing.free">
+<PointGeometry>
+<Point X="401" Y="-231"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Processing.Done.carrying">
+<PointGeometry>
+<Point X="773" Y="125"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Processing.Done.free">
+<PointGeometry>
+<Point X="597" Y="-76"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Processing.Idle.carrying">
+<PointGeometry>
+<Point X="634" Y="-4"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Processing.Idle.free">
+<PointGeometry>
+<Point X="461" Y="-248"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Processing.Processing.carrying">
+<PointGeometry>
+<Point X="714" Y="72"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="B2.Processing.Processing.free">
+<PointGeometry>
+<Point X="521" Y="-169"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="B0.Done.Done.carrying" Target="B1.Done.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="811" Y="-205"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Done.Done.free" Target="B0.Done.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="746" Y="-419"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Done.Done.free" Target="B0.Idle.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B0.Done.Idle.carrying" Target="B0.Done.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="804" Y="-333"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Done.Idle.carrying" Target="B1.Done.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="680" Y="-389"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Done.Idle.free" Target="B0.Done.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="597" Y="-572"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Done.Idle.free" Target="B0.Idle.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="516" Y="-553"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Done.Processing.carrying" Target="B0.Done.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="862" Y="-238"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Done.Processing.carrying" Target="B1.Done.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="754" Y="-293"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Done.Processing.free" Target="B0.Done.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="680" Y="-498"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Done.Processing.free" Target="B0.Idle.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="596" Y="-483"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.Done.carrying" Target="B0.Processing.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="711" Y="-308"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.Done.carrying" Target="B1.Idle.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="552" Y="-346"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.Done.free" Target="B0.Idle.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="454" Y="-523"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.Done.free" Target="B0.Processing.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="504" Y="-534"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.Idle.carrying" Target="B0.Idle.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="522" Y="-468"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.Idle.carrying" Target="B0.Processing.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="554" Y="-476"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.Idle.carrying" Target="B1.Idle.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="409" Y="-498"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.Idle.free" Target="B0.Idle.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B0.Idle.Idle.free" Target="B0.Processing.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="371" Y="-657"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.Processing.carrying" Target="B0.Idle.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="590" Y="-379"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.Processing.carrying" Target="B0.Processing.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="639" Y="-392"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.Processing.carrying" Target="B1.Idle.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="474" Y="-426"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.Processing.free" Target="B0.Idle.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="392" Y="-573"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Idle.Processing.free" Target="B0.Processing.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="427" Y="-600"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.Done.carrying" Target="B0.Done.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="828" Y="-229"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.Done.carrying" Target="B1.Processing.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B0.Processing.Done.free" Target="B0.Done.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="655" Y="-488"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.Done.free" Target="B0.Processing.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="607" Y="-480"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.Idle.carrying" Target="B0.Done.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="698" Y="-415"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.Idle.carrying" Target="B0.Processing.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="671" Y="-397"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.Idle.carrying" Target="B1.Processing.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="543" Y="-451"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.Idle.free" Target="B0.Done.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="496" Y="-630"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.Idle.free" Target="B0.Processing.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="468" Y="-623"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.Processing.carrying" Target="B0.Done.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="774" Y="-315"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.Processing.carrying" Target="B0.Processing.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="742" Y="-305"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.Processing.carrying" Target="B1.Processing.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="614" Y="-346"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.Processing.free" Target="B0.Done.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="565" Y="-566"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B0.Processing.Processing.free" Target="B0.Processing.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="542" Y="-557"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Done.carrying" Target="B0.Done.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="886" Y="-103"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Done.carrying" Target="B2.Done.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="805" Y="-7"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Done.free" Target="B0.Done.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="733" Y="-337"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Done.free" Target="B1.Done.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="750" Y="-189"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Done.free" Target="B1.Idle.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="684" Y="-171"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Idle.carrying" Target="B0.Done.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="773" Y="-272"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Idle.carrying" Target="B1.Done.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="792" Y="-123"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Idle.carrying" Target="B2.Done.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="663" Y="-160"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Idle.free" Target="B0.Done.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="571" Y="-495"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Idle.free" Target="B1.Done.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="641" Y="-355"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Idle.free" Target="B1.Idle.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="535" Y="-337"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Processing.carrying" Target="B0.Done.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="834" Y="-181"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Processing.carrying" Target="B1.Done.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="851" Y="-51"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Processing.carrying" Target="B2.Done.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="741" Y="-79"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Processing.free" Target="B0.Done.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="660" Y="-423"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Processing.free" Target="B1.Done.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="705" Y="-260"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Done.Processing.free" Target="B1.Idle.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B1.Idle.Done.carrying" Target="B0.Idle.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="642" Y="-237"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Done.carrying" Target="B1.Processing.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="692" Y="-88"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Done.carrying" Target="B2.Idle.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="539" Y="-119"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Done.free" Target="B0.Idle.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="438" Y="-444"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Done.free" Target="B1.Idle.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="466" Y="-316"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Done.free" Target="B1.Processing.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="532" Y="-316"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Idle.carrying" Target="B0.Idle.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B1.Idle.Idle.carrying" Target="B1.Idle.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="512" Y="-246"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Idle.carrying" Target="B1.Processing.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="545" Y="-254"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Idle.carrying" Target="B2.Idle.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="405" Y="-300"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Idle.free" Target="B0.Idle.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="318" Y="-573"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Idle.free" Target="B1.Idle.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="363" Y="-454"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Idle.free" Target="B1.Processing.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="401" Y="-472"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Processing.carrying" Target="B0.Idle.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="551" Y="-319"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Processing.carrying" Target="B1.Idle.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="591" Y="-167"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Processing.carrying" Target="B1.Processing.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B1.Idle.Processing.carrying" Target="B2.Idle.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="463" Y="-212"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Processing.free" Target="B0.Idle.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="372" Y="-512"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Processing.free" Target="B1.Idle.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="423" Y="-381"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Idle.Processing.free" Target="B1.Processing.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B1.Processing.Done.carrying" Target="B0.Processing.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="771" Y="-156"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Done.carrying" Target="B1.Done.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="813" Y="-33"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Done.carrying" Target="B2.Processing.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="673" Y="-54"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Done.free" Target="B0.Processing.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="602" Y="-405"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Done.free" Target="B1.Done.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="672" Y="-251"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Done.free" Target="B1.Processing.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B1.Processing.Idle.carrying" Target="B0.Processing.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="625" Y="-332"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Idle.carrying" Target="B1.Done.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="684" Y="-189"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Idle.carrying" Target="B1.Processing.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="652" Y="-174"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Idle.carrying" Target="B2.Processing.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B1.Processing.Idle.free" Target="B0.Processing.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="447" Y="-551"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Idle.free" Target="B1.Done.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="525" Y="-418"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Idle.free" Target="B1.Processing.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="495" Y="-413"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Processing.carrying" Target="B0.Processing.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="703" Y="-237"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Processing.carrying" Target="B1.Done.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B1.Processing.Processing.carrying" Target="B1.Processing.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="721" Y="-92"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Processing.carrying" Target="B2.Processing.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="594" Y="-143"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Processing.free" Target="B0.Processing.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="512" Y="-486"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B1.Processing.Processing.free" Target="B1.Done.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B1.Processing.Processing.free" Target="B1.Processing.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="565" Y="-331"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Done.Done.carrying" Target="B1.Done.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="892" Y="65"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Done.Done.free" Target="B1.Done.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B2.Done.Done.free" Target="B2.Done.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="760" Y="19"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Done.Done.free" Target="B2.Idle.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="698" Y="47"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Done.Idle.carrying" Target="B1.Done.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="777" Y="-60"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Done.Idle.carrying" Target="B2.Done.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="821" Y="68"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Done.Idle.free" Target="B1.Done.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="576" Y="-271"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Done.Idle.free" Target="B2.Done.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="610" Y="-112"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Done.Idle.free" Target="B2.Idle.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B2.Done.Processing.carrying" Target="B1.Done.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="841" Y="7"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Done.Processing.carrying" Target="B2.Done.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="B2.Done.Processing.free" Target="B1.Done.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="665" Y="-187"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Done.Processing.free" Target="B2.Done.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="693" Y="-37"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Done.Processing.free" Target="B2.Idle.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="618" Y="-22"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Done.carrying" Target="B1.Idle.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="644" Y="-12"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Done.carrying" Target="B2.Processing.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="718" Y="125"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Done.free" Target="B1.Idle.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="443" Y="-233"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Done.free" Target="B2.Idle.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="471" Y="-87"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Done.free" Target="B2.Processing.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="519" Y="-90"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Idle.carrying" Target="B1.Idle.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="483" Y="-168"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Idle.carrying" Target="B2.Idle.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="535" Y="-7"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Idle.carrying" Target="B2.Processing.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="561" Y="-18"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Idle.free" Target="B1.Idle.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="329" Y="-401"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Idle.free" Target="B2.Idle.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="354" Y="-266"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Idle.free" Target="B2.Processing.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="388" Y="-276"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Processing.carrying" Target="B1.Idle.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="556" Y="-83"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Processing.carrying" Target="B2.Idle.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="618" Y="67"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Processing.carrying" Target="B2.Processing.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="650" Y="61"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Processing.free" Target="B1.Idle.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="382" Y="-323"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Processing.free" Target="B2.Idle.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="413" Y="-171"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Idle.Processing.free" Target="B2.Processing.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="442" Y="-189"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Done.carrying" Target="B1.Processing.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="767" Y="46"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Done.carrying" Target="B2.Done.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="839" Y="150"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Done.free" Target="B1.Processing.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="592" Y="-174"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Done.free" Target="B2.Done.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="661" Y="-29"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Done.free" Target="B2.Processing.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="608" Y="-25"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Idle.carrying" Target="B1.Processing.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="615" Y="-100"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Idle.carrying" Target="B2.Done.Idle.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="711" Y="29"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Idle.carrying" Target="B2.Processing.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="673" Y="52"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Idle.free" Target="B1.Processing.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="445" Y="-349"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Idle.free" Target="B2.Done.Idle.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="504" Y="-198"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Idle.free" Target="B2.Processing.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="474" Y="-200"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Processing.carrying" Target="B1.Processing.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="703" Y="-18"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Processing.carrying" Target="B2.Done.Processing.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="786" Y="95"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Processing.carrying" Target="B2.Processing.Done.carrying">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="745" Y="118"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Processing.free" Target="B1.Processing.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="514" Y="-267"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Processing.free" Target="B2.Done.Processing.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="577" Y="-113"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="B2.Processing.Processing.free" Target="B2.Processing.Done.free">
+<LabelBlock>
+<SimpleIdentifier Name="finish_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="545" Y="-108"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+</ComponentList>
+</Module>

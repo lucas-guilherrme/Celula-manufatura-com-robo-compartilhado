@@ -1,0 +1,1542 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<Module xmlns="http://waters.sourceforge.net/xsd/module" xmlns:B="http://waters.sourceforge.net/xsd/base" Name="Teste_01">
+<EventDeclList>
+<EventDecl Kind="CONTROLLABLE" Name="start_M1"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="fim_proc_M1"/>
+<EventDecl Kind="CONTROLLABLE" Name="retira_M1"/>
+<EventDecl Kind="PROPOSITION" Name=":accepting"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="fim_proc_M2"/>
+<EventDecl Kind="CONTROLLABLE" Name="start_M2"/>
+<EventDecl Kind="CONTROLLABLE" Name="retira_M2"/>
+<EventDecl Kind="CONTROLLABLE" Name="pick_M1"/>
+<EventDecl Kind="CONTROLLABLE" Name="pick_M2"/>
+<EventDecl Kind="CONTROLLABLE" Name="deposit"/>
+<EventDecl Kind="CONTROLLABLE" Name="deposita"/>
+<EventDecl Kind="UNCONTROLLABLE" Name="remove"/>
+</EventDeclList>
+<ComponentList>
+<SimpleComponent Kind="PLANT" Name="M1">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="Livre">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="60" Y="59"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-21" Y="-1"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-13" Y="7"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Processando">
+<PointGeometry>
+<Point X="79" Y="146"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-31" Y="8"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Peca_Pronta">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="144" Y="86"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-30" Y="7"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="Livre" Target="Processando">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="62" Y="104"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Processando" Target="Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="fim_proc_M1"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="117" Y="122"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Peca_Pronta" Target="Livre">
+<LabelBlock>
+<SimpleIdentifier Name="retira_M1"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="104" Y="65"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="M2">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="Livre">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="57" Y="58"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-21" Y="-1"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-13" Y="7"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Processando">
+<PointGeometry>
+<Point X="80" Y="144"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-31" Y="8"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Peca_Pronta">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="143" Y="83"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-30" Y="7"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="Livre" Target="Processando">
+<LabelBlock>
+<SimpleIdentifier Name="start_M2"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="61" Y="103"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Processando" Target="Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="fim_proc_M2"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="117" Y="119"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Peca_Pronta" Target="Livre">
+<LabelBlock>
+<SimpleIdentifier Name="retira_M2"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="102" Y="62"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="FSM_ROBO">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="Livre">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="57" Y="57"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-21" Y="0"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-16" Y="9"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="Carregando">
+<PointGeometry>
+<Point X="288" Y="64"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="-24" Y="12"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="Livre" Target="Carregando">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="172" Y="31"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="Carregando" Target="Livre">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="171" Y="90"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="FSM_BUFFER">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="64" Y="96"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-22" Y="-5"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="256" Y="96"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="432" Y="96"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="160" Y="48"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S2">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="350" Y="55"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="353" Y="129"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+</LabelBlock>
+<SplineGeometry>
+<Point X="150" Y="131"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="FSM_BUFFER||FSM_ROBO||M1">
+<Graph>
+<NodeList>
+<SimpleNode Name="S0.Carregando.Livre">
+<PointGeometry>
+<Point X="144" Y="290"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S0.Carregando.Peca_Pronta">
+<PointGeometry>
+<Point X="97" Y="343"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S0.Carregando.Processando">
+<PointGeometry>
+<Point X="179" Y="380"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Initial="true" Name="S0.Livre.Livre">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="144" Y="128"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S0.Livre.Peca_Pronta">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="89" Y="193"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S0.Livre.Processando">
+<PointGeometry>
+<Point X="177" Y="218"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.Carregando.Livre">
+<PointGeometry>
+<Point X="357" Y="271"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.Carregando.Peca_Pronta">
+<PointGeometry>
+<Point X="306" Y="326"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.Carregando.Processando">
+<PointGeometry>
+<Point X="381" Y="364"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.Livre.Livre">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="346" Y="99"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.Livre.Peca_Pronta">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="294" Y="161"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.Livre.Processando">
+<PointGeometry>
+<Point X="376" Y="193"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2.Carregando.Livre">
+<PointGeometry>
+<Point X="578" Y="246"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2.Carregando.Peca_Pronta">
+<PointGeometry>
+<Point X="508" Y="296"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2.Carregando.Processando">
+<PointGeometry>
+<Point X="577" Y="331"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2.Livre.Livre">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="549" Y="88"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2.Livre.Peca_Pronta">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="492" Y="140"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2.Livre.Processando">
+<PointGeometry>
+<Point X="563" Y="172"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0.Carregando.Livre" Target="S0.Carregando.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="149" Y="349"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Carregando.Livre" Target="S0.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="121" Y="212"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Carregando.Livre" Target="S1.Carregando.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="242" Y="296"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Carregando.Peca_Pronta" Target="S0.Carregando.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="retira_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="102" Y="324"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Carregando.Peca_Pronta" Target="S0.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="72" Y="267"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Carregando.Peca_Pronta" Target="S1.Carregando.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="199" Y="352"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Carregando.Processando" Target="S0.Carregando.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="fim_proc_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="121" Y="383"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Carregando.Processando" Target="S0.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="181" Y="314"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Carregando.Processando" Target="S1.Carregando.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="281" Y="413"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Livre.Livre" Target="S0.Carregando.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="131" Y="193"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Livre.Livre" Target="S0.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="149" Y="162"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Livre.Livre" Target="S1.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="236" Y="95"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Livre.Peca_Pronta" Target="S0.Carregando.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="53" Y="276"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Livre.Peca_Pronta" Target="S0.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="retira_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="95" Y="145"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Livre.Peca_Pronta" Target="S1.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="179" Y="170"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Livre.Processando" Target="S0.Carregando.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="166" Y="299"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.Livre.Processando" Target="S0.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="fim_proc_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="S0.Livre.Processando" Target="S1.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="281" Y="211"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Carregando.Livre" Target="S0.Carregando.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="243" Y="274"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Carregando.Livre" Target="S1.Carregando.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="374" Y="330"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Carregando.Livre" Target="S1.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="347" Y="186"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Carregando.Livre" Target="S2.Carregando.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="482" Y="271"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Carregando.Peca_Pronta" Target="S0.Carregando.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="178" Y="349"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Carregando.Peca_Pronta" Target="S1.Carregando.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="retira_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="330" Y="309"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Carregando.Peca_Pronta" Target="S1.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="289" Y="256"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Carregando.Peca_Pronta" Target="S2.Carregando.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="419" Y="329"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Carregando.Processando" Target="S0.Carregando.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="277" Y="392"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Carregando.Processando" Target="S1.Carregando.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="fim_proc_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="341" Y="366"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Carregando.Processando" Target="S1.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="393" Y="297"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Carregando.Processando" Target="S2.Carregando.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="492" Y="386"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Livre.Livre" Target="S0.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="237" Y="74"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Livre.Livre" Target="S1.Carregando.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="346" Y="167"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Livre.Livre" Target="S1.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="366" Y="131"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Livre.Livre" Target="S2.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="459" Y="73"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Livre.Peca_Pronta" Target="S0.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="167" Y="156"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Livre.Peca_Pronta" Target="S1.Carregando.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="289" Y="234"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Livre.Peca_Pronta" Target="S1.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="retira_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="313" Y="112"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Livre.Peca_Pronta" Target="S2.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="385" Y="141"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Livre.Processando" Target="S0.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="270" Y="193"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Livre.Processando" Target="S1.Carregando.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="390" Y="275"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Livre.Processando" Target="S1.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="fim_proc_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="335" Y="167"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.Livre.Processando" Target="S2.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="485" Y="188"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Carregando.Livre" Target="S1.Carregando.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="479" Y="250"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Carregando.Livre" Target="S2.Carregando.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="602" Y="299"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Carregando.Livre" Target="S2.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="607" Y="155"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Carregando.Peca_Pronta" Target="S1.Carregando.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="399" Y="325"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Carregando.Peca_Pronta" Target="S2.Carregando.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="retira_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="560" Y="279"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Carregando.Peca_Pronta" Target="S2.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="515" Y="223"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Carregando.Processando" Target="S1.Carregando.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="495" Y="365"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Carregando.Processando" Target="S2.Carregando.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="fim_proc_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="555" Y="328"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Carregando.Processando" Target="S2.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="deposit"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="611" Y="257"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Livre.Livre" Target="S1.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="450" Y="53"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Livre.Livre" Target="S2.Carregando.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="585" Y="152"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Livre.Livre" Target="S2.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="576" Y="115"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Livre.Peca_Pronta" Target="S1.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="398" Y="126"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Livre.Peca_Pronta" Target="S2.Carregando.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="496" Y="212"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Livre.Peca_Pronta" Target="S2.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="retira_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="529" Y="98"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Livre.Processando" Target="S1.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="482" Y="168"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.Livre.Processando" Target="S2.Carregando.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+</Edge>
+<Edge Source="S2.Livre.Processando" Target="S2.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="fim_proc_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="540" Y="145"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="SUPERVISOR" Name="detm('sup(FSM_BUFFER||FSM_BUFFER||FSM_ROBO||M1||FSM_ROBO||M1)'\{'deposit'})">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0.S0.Carregando.Livre.Carregando.Livre.S0.S0.Livre.Livre.Livre.Livre.S0.S0.Livre.Livre.Livre.Livre">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="152" Y="139"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S0.S0.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="120" Y="226"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S0.S0.Carregando.Processando.Carregando.Processando.S0.S0.Livre.Processando.Livre.Processando.S0.S0.Livre.Processando.Livre.Processando">
+<PointGeometry>
+<Point X="239" Y="117"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.S1.Carregando.Livre.Carregando.Livre.S1.S1.Livre.Livre.Livre.Livre.S1.S1.Livre.Livre.Livre.Livre">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="267" Y="267"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.S1.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="225" Y="349"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1.S1.Carregando.Processando.Carregando.Processando.S1.S1.Livre.Processando.Livre.Processando.S1.S1.Livre.Processando.Livre.Processando">
+<PointGeometry>
+<Point X="352" Y="234"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2.S2.Carregando.Livre.Carregando.Livre.S2.S2.Livre.Livre.Livre.Livre.S2.S2.Livre.Livre.Livre.Livre">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="380" Y="392"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2.S2.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta">
+<EventList>
+<SimpleIdentifier Name=":accepting"/>
+</EventList>
+<PointGeometry>
+<Point X="343" Y="468"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S2.S2.Carregando.Processando.Carregando.Processando.S2.S2.Livre.Processando.Livre.Processando.S2.S2.Livre.Processando.Livre.Processando">
+<PointGeometry>
+<Point X="459" Y="361"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="5" Y="5"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0.S0.Carregando.Livre.Carregando.Livre.S0.S0.Livre.Livre.Livre.Livre.S0.S0.Livre.Livre.Livre.Livre" Target="S0.S0.Carregando.Livre.Carregando.Livre.S0.S0.Livre.Livre.Livre.Livre.S0.S0.Livre.Livre.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="107" Y="89"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.S0.Carregando.Livre.Carregando.Livre.S0.S0.Livre.Livre.Livre.Livre.S0.S0.Livre.Livre.Livre.Livre" Target="S0.S0.Carregando.Processando.Carregando.Processando.S0.S0.Livre.Processando.Livre.Processando.S0.S0.Livre.Processando.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="190" Y="110"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.S0.Carregando.Livre.Carregando.Livre.S0.S0.Livre.Livre.Livre.Livre.S0.S0.Livre.Livre.Livre.Livre" Target="S1.S1.Carregando.Livre.Carregando.Livre.S1.S1.Livre.Livre.Livre.Livre.S1.S1.Livre.Livre.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="210" Y="187"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.S0.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta" Target="S0.S0.Carregando.Livre.Carregando.Livre.S0.S0.Livre.Livre.Livre.Livre.S0.S0.Livre.Livre.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="retira_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="118" Y="175"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.S0.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta" Target="S0.S0.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="54" Y="226"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.S0.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta" Target="S1.S1.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="161" Y="289"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.S0.Carregando.Processando.Carregando.Processando.S0.S0.Livre.Processando.Livre.Processando.S0.S0.Livre.Processando.Livre.Processando" Target="S0.S0.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="fim_proc_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="174" Y="167"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.S0.Carregando.Processando.Carregando.Processando.S0.S0.Livre.Processando.Livre.Processando.S0.S0.Livre.Processando.Livre.Processando" Target="S0.S0.Carregando.Processando.Carregando.Processando.S0.S0.Livre.Processando.Livre.Processando.S0.S0.Livre.Processando.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="246" Y="52"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S0.S0.Carregando.Processando.Carregando.Processando.S0.S0.Livre.Processando.Livre.Processando.S0.S0.Livre.Processando.Livre.Processando" Target="S1.S1.Carregando.Processando.Carregando.Processando.S1.S1.Livre.Processando.Livre.Processando.S1.S1.Livre.Processando.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="316" Y="153"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.S1.Carregando.Livre.Carregando.Livre.S1.S1.Livre.Livre.Livre.Livre.S1.S1.Livre.Livre.Livre.Livre" Target="S0.S0.Carregando.Livre.Carregando.Livre.S0.S0.Livre.Livre.Livre.Livre.S0.S0.Livre.Livre.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="193" Y="202"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.S1.Carregando.Livre.Carregando.Livre.S1.S1.Livre.Livre.Livre.Livre.S1.S1.Livre.Livre.Livre.Livre" Target="S1.S1.Carregando.Livre.Carregando.Livre.S1.S1.Livre.Livre.Livre.Livre.S1.S1.Livre.Livre.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="291" Y="302"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.S1.Carregando.Livre.Carregando.Livre.S1.S1.Livre.Livre.Livre.Livre.S1.S1.Livre.Livre.Livre.Livre" Target="S1.S1.Carregando.Processando.Carregando.Processando.S1.S1.Livre.Processando.Livre.Processando.S1.S1.Livre.Processando.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="314" Y="243"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.S1.Carregando.Livre.Carregando.Livre.S1.S1.Livre.Livre.Livre.Livre.S1.S1.Livre.Livre.Livre.Livre" Target="S2.S2.Carregando.Livre.Carregando.Livre.S2.S2.Livre.Livre.Livre.Livre.S2.S2.Livre.Livre.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="334" Y="324"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.S1.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta" Target="S0.S0.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta.S0.S0.Livre.Peca_Pronta.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="147" Y="306"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.S1.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta" Target="S1.S1.Carregando.Livre.Carregando.Livre.S1.S1.Livre.Livre.Livre.Livre.S1.S1.Livre.Livre.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="retira_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="238" Y="312"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.S1.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta" Target="S1.S1.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="179" Y="395"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.S1.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta" Target="S2.S2.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="283" Y="422"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.S1.Carregando.Processando.Carregando.Processando.S1.S1.Livre.Processando.Livre.Processando.S1.S1.Livre.Processando.Livre.Processando" Target="S0.S0.Carregando.Processando.Carregando.Processando.S0.S0.Livre.Processando.Livre.Processando.S0.S0.Livre.Processando.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="299" Y="165"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.S1.Carregando.Processando.Carregando.Processando.S1.S1.Livre.Processando.Livre.Processando.S1.S1.Livre.Processando.Livre.Processando" Target="S1.S1.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="fim_proc_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="291" Y="299"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.S1.Carregando.Processando.Carregando.Processando.S1.S1.Livre.Processando.Livre.Processando.S1.S1.Livre.Processando.Livre.Processando" Target="S1.S1.Carregando.Processando.Carregando.Processando.S1.S1.Livre.Processando.Livre.Processando.S1.S1.Livre.Processando.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="402" Y="193"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1.S1.Carregando.Processando.Carregando.Processando.S1.S1.Livre.Processando.Livre.Processando.S1.S1.Livre.Processando.Livre.Processando" Target="S2.S2.Carregando.Processando.Carregando.Processando.S2.S2.Livre.Processando.Livre.Processando.S2.S2.Livre.Processando.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="deposita"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="419" Y="298"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.S2.Carregando.Livre.Carregando.Livre.S2.S2.Livre.Livre.Livre.Livre.S2.S2.Livre.Livre.Livre.Livre" Target="S1.S1.Carregando.Livre.Carregando.Livre.S1.S1.Livre.Livre.Livre.Livre.S1.S1.Livre.Livre.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="318" Y="339"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.S2.Carregando.Livre.Carregando.Livre.S2.S2.Livre.Livre.Livre.Livre.S2.S2.Livre.Livre.Livre.Livre" Target="S2.S2.Carregando.Livre.Carregando.Livre.S2.S2.Livre.Livre.Livre.Livre.S2.S2.Livre.Livre.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="423" Y="438"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.S2.Carregando.Livre.Carregando.Livre.S2.S2.Livre.Livre.Livre.Livre.S2.S2.Livre.Livre.Livre.Livre" Target="S2.S2.Carregando.Processando.Carregando.Processando.S2.S2.Livre.Processando.Livre.Processando.S2.S2.Livre.Processando.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="start_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="431" Y="382"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.S2.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta" Target="S1.S1.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta.S1.S1.Livre.Peca_Pronta.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="266" Y="434"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.S2.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta" Target="S2.S2.Carregando.Livre.Carregando.Livre.S2.S2.Livre.Livre.Livre.Livre.S2.S2.Livre.Livre.Livre.Livre">
+<LabelBlock>
+<SimpleIdentifier Name="retira_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="366" Y="442"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.S2.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta" Target="S2.S2.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="348" Y="534"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.S2.Carregando.Processando.Carregando.Processando.S2.S2.Livre.Processando.Livre.Processando.S2.S2.Livre.Processando.Livre.Processando" Target="S1.S1.Carregando.Processando.Carregando.Processando.S1.S1.Livre.Processando.Livre.Processando.S1.S1.Livre.Processando.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="remove"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="433" Y="282"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.S2.Carregando.Processando.Carregando.Processando.S2.S2.Livre.Processando.Livre.Processando.S2.S2.Livre.Processando.Livre.Processando" Target="S2.S2.Carregando.Peca_Pronta.Carregando.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta.S2.S2.Livre.Peca_Pronta.Livre.Peca_Pronta">
+<LabelBlock>
+<SimpleIdentifier Name="fim_proc_M1"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="417" Y="433"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S2.S2.Carregando.Processando.Carregando.Processando.S2.S2.Livre.Processando.Livre.Processando.S2.S2.Livre.Processando.Livre.Processando" Target="S2.S2.Carregando.Processando.Carregando.Processando.S2.S2.Livre.Processando.Livre.Processando.S2.S2.Livre.Processando.Livre.Processando">
+<LabelBlock>
+<SimpleIdentifier Name="pick_M1"/>
+<SimpleIdentifier Name="pick_M2"/>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="524" Y="372"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+</ComponentList>
+</Module>

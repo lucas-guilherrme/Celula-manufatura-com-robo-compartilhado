@@ -1,0 +1,87 @@
+flowchart TD
+    %% --- NÓS (NODES) ---
+    
+    %% Início do Loop
+    Start("fa:fa-play-circle Início do Loop")
+    
+    %% Atualização das Máquinas
+    subgraph Maquinas [Atualização das Máquinas]
+        UpdateM("fa:fa-cogs Atualizar M1 e M2")
+        NoteM1(M1/M2: Processando ou Pronta?)@{ shape: docs }
+    end
+
+    %% Decisão do Robô (Central)
+    RoboState{"fa:fa-robot Estado do Robô?"}
+    
+    %% Ramo: Robô LIVRE (Prioridade M1 > M2)
+    CheckM1{"M1 Pronta?"}
+    PickM1("fa:fa-hand-rock Pegar de M1")
+    CheckM2{"M2 Pronta?"}
+    PickM2("fa:fa-hand-rock Pegar de M2")
+    Wait("fa:fa-hourglass-half Aguardando Peças")
+
+    %% Ramo: Robô CARREGANDO
+    CheckBuff{"Buffer < 2?"}
+    Deposit("fa:fa-arrow-down Depositar no Buffer")
+    Block("fa:fa-ban Bloqueado (Buffer Cheio)")
+
+    %% Buffer Consumo (Agente Externo)
+    Consumer{"fa:fa-dice Random < 0.40?"}
+    Remove("fa:fa-trash Remover Peça")
+    
+    %% Fim do Ciclo
+    Print("fa:fa-desktop Imprimir Status")
+    Sleep("fa:fa-clock Sleep(4s)")
+
+    %% --- CONEXÕES (EDGES) ---
+
+    %% Fluxo Principal
+    Start --> UpdateM --> RoboState
+    UpdateM -.- NoteM1
+
+    %% Lógica do Robô
+    RoboState -- LIVRE --> CheckM1
+    RoboState -- CARREGANDO --> CheckBuff
+
+    %% Prioridade de Coleta
+    CheckM1 -- Sim --> PickM1
+    CheckM1 -- Não --> CheckM2
+    CheckM2 -- Sim --> PickM2
+    CheckM2 -- Não --> Wait
+
+    %% Lógica de Depósito
+    CheckBuff -- Sim --> Deposit
+    CheckBuff -- Não --> Block
+
+    %% Convergência para o Buffer (Agente Externo)
+    PickM1 & PickM2 & Wait & Deposit & Block --> Consumer
+
+    %% Consumo
+    Consumer -- Sim --> Remove --> Print
+    Consumer -- Não --> Print
+
+    %% Loop de volta
+    Print --> Sleep --> Start
+
+    %% --- ESTILIZAÇÃO (STYLING) ---
+
+    %% Estilo Máquinas (Azul)
+    style UpdateM fill:#2962FF, stroke:#fff, color:#fff, stroke-width:2px
+    style NoteM1 fill:#E3F2FD, stroke:#2962FF, color:#000
+
+    %% Estilo Robô (Roxo/Rosa)
+    style RoboState fill:#AA00FF, stroke:#fff, color:#fff, stroke-width:2px, shape:diamond
+    style PickM1 fill:#E040FB, stroke:#fff, color:#fff
+    style PickM2 fill:#E040FB, stroke:#fff, color:#fff
+    style Deposit fill:#00C853, stroke:#fff, color:#fff %% Verde para sucesso
+
+    %% Estilo Bloqueio/Erro (Vermelho)
+    style Block fill:#D50000, stroke:#fff, color:#fff, stroke-dasharray: 5 5
+
+    %% Estilo Buffer/Externo (Laranja/Amarelo)
+    style Consumer fill:#FF6D00, stroke:#fff, color:#fff
+    style Remove fill:#FFAB40, stroke:#fff, color:#000
+    
+    %% Estilo Controle (Cinza)
+    style Start fill:#37474F, stroke:#fff, color:#fff
+    style Sleep fill:#37474F, stroke:#fff, color:#fff
