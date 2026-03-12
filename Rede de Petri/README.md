@@ -89,6 +89,10 @@ A modelagem do sistema no CPN Tools foi dividida em quatro grandes fases, evolui
 --- 
 # Imagens do Esquema
 
+![Célula](assets/Celula.png)
+
+![Fábrica](assets/Fabrica.png)
+
 ---
 
 # Link do video
