@@ -57,6 +57,8 @@ O modelo foi construído com uma abordagem Top-Down usando sub-páginas e soquet
 
 ```
 
+![Sistema de Manufatura](assets/sistema-de-manufatura.png)
+
 # Descritivo Detalhado do Desenvolvimento
 
 A modelagem do sistema no CPN Tools foi dividida em quatro grandes fases, evoluindo de uma lógica sequencial simples para uma arquitetura hierárquica e paralela de manufatura.
