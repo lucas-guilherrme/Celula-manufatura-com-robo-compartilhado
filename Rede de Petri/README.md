@@ -63,7 +63,7 @@ O modelo foi construído com uma abordagem Top-Down usando sub-páginas e soquet
 
 ```
 
-![Sistema de Manufatura](assets/sistema-de-manufatura.png)
+![Sistema de Manufatura](assets/sistema-de-manufatura-robos.png)
 
 ---
 
@@ -89,9 +89,11 @@ A modelagem do sistema no CPN Tools foi dividida em quatro grandes fases, evolui
 --- 
 # Imagens do Esquema
 
-![Célula](assets/Celula.png)
+![Célula](assets/celula.png)
 
-![Fábrica](assets/Fabrica.png)
+![Fábrica](assets/fabrica.png)
+
+![Planta Global](assets/planta.png)
 
 ---
 
