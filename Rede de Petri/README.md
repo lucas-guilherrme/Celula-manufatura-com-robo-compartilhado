@@ -14,6 +14,7 @@
 - [Descrição do Problema](#-Descrição-do-Problema)
 - [Arquitetura e Diagrama de Blocos](#-Arquitetura-e-Diagrama-de-Blocos)
 - [Descritivo Detalhado do Desenvolvimento](#-Descritivo-Detalhado-do-Desenvolvimento)
+- [Imagens do Esquema](#-Imagens-do-Esquema)
 - [Link do video](#-Link-do-video)
 
 ---
@@ -86,6 +87,9 @@ A modelagem do sistema no CPN Tools foi dividida em quatro grandes fases, evolui
     * Correção de Abastecimento: Inseriu-se o valor 2'IDLE no lugar Esteira_Vagas da página principal. Isso inicializou o sistema com 2 vagas disponíveis no buffer compartilhado, impedindo um travamento imediato (Deadlock) do robô na tentativa de depositar a primeira peça processada.
 
 --- 
+# Imagens do Esquema
+
+---
 
 # Link do video
 
