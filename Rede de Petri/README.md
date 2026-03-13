@@ -100,3 +100,4 @@ A modelagem do sistema no CPN Tools foi dividida em quatro grandes fases, evolui
 # 🎥 Link do video
 
 <div/>
+https://youtu.be/nGqiJMMH_10?si=UWalAzWjcuH1ToKv
