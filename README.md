@@ -6,7 +6,7 @@
 
 ### 📁 Distribuição dos projetos
 
-#### Temos os dois projetos senne repositório, `Automatos` disrepeito ao `Projeto 1` e `Rede de Petri` é o `Projeto 2`
+#### Temos os dois projetos senne repositório, `Automatos` dis repeito ao `Projeto 1` e `Rede de Petri` é o `Projeto 2`
 
 ``` text
 📂 Celula-manufatura-com-robo-compartilhado/
